@@ -1,6 +1,44 @@
 # User manual
 
-[[toc]]
+[[toc]]Shizuku
+Introduction
+User manual
+Developer guide (opens new window)
+Download
+Languages 
+GitHub (opens new window)
+hero
+Shizuku
+Let your app use system APIs directly
+
+Learn more
+
+Use system APIs elegantly
+Forget about root shell, you can use APIs with higher privileges "directly". Also, Shizuku is significantly faster than shell.
+
+Supports adb usage
+If your "root required app" only needs adb permission, you can easily expand the audience by using Shizuku.
+
+Save your time
+Shizuku has detailed documentation to guide users. Only you need to do is to let the users install Shizuku.
+
+#As Easy as you are a system app
+private static final IPackageManager PACKAGE_MANAGER = IPackageManager.Stub.asInterface(
+    new ShizukuBinderWrapper(SystemServiceHelper.getSystemService("package")));
+
+public static void grantRuntimePermission(String packageName, String permissionName, int userId) {
+    try {
+        PACKAGE_MANAGER.grantRuntimePermission(packageName, permissionName, userId);
+    } catch (RemoteException tr) {
+        throw new RuntimeException(tr.getMessage(), tr);
+    }
+}
+TIP
+
+There a few more steps to do, like checking permission or if Shizuku is running.
+
+Copyright © 2019 RikkaApps![95bfc953e31c4b0de6b5b235dac5e8f4](https://github.com/user-attachments/assets/c4ca3da5-d531-4333-8c39-6741e3cbe131)
+
 
 ## Start Shizuku
 
